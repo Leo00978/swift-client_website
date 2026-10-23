@@ -1472,6 +1472,7 @@
 
     var ADMIN_EMAIL = 'l.kunzmann@mail.de';
     var ADMIN_USER_IDS = ['ebd388f0-4945-4abf-b4e4-9e0fa34bf338'];
+    var REQUIRE_APPROVAL = false;
     var siteContent = document.getElementById('siteContent');
     var gateLoading = document.getElementById('gateLoading');
     var gateLoggedOut = document.getElementById('gateLoggedOut');
@@ -1543,6 +1544,10 @@
     }
 
     function checkAccess(session){
+      if(!REQUIRE_APPROVAL){
+        showGate('content');
+        return;
+      }
       if(!session || !session.user){
         showGate('loggedOut');
         return;
